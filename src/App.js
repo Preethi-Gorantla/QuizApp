@@ -1,22 +1,19 @@
-import { useState } from 'react';
-import { AppContainer, Head1, Heading } from './App.styles';
+
+import { AppContainer, Head1, Heading, ResetBtn } from './App.styles';
 import {FiSun ,FiMoon} from 'react-icons/fi';
 import { data } from './components/data';
 import Question from './components/Question';
 import { Button } from './App.styles';
-import { changeTheme, onReset, onSubmit } from './Actions';
+import { changeTheme, onBack, onReset, onSubmit } from './Actions';
 import {connect} from 'react-redux'
 
 function App(props) {
   const {
     isTheme,
     submit,
-    reset
+    reset,
+    backtoQuiz
   } = props
-
-  console.log("submit",submit)
-  console.log("reset",reset)
-  //const [theme,setTheme] = useState(false);
 
   const handleTheme = () => {
     //setTheme(!theme)
@@ -32,10 +29,13 @@ function App(props) {
           </Head1>
         </Heading>
         {data.map((item,index) => <Question question={item} key={index} isTheme={isTheme}/>)}
-        <Heading>
-            <Button onClick={props.handleReset}>Reset</Button>
+        {!(submit || reset) ?
+         <Heading>
+            <ResetBtn onClick={props.handleReset}>Reset</ResetBtn>
             <Button onClick={props.handleSubmit}>Submit</Button>
-        </Heading>
+        </Heading> 
+        : <Button onClick={props.handleBacktoQuiz}>Back to Quiz</Button>}
+        {/* {submit && <Button onClick={props.handleBacktoQuiz}>Back to Quiz</Button>} */}
     </AppContainer>
   );
 }
@@ -44,7 +44,8 @@ const mapStatetoProps = (state) => {
   return{
     isTheme : state.isTheme,
     submit:state.submit,
-    reset:state.reset
+    reset:state.reset,
+    backtoQuiz:state.backtoQuiz
   }
 }
 
@@ -52,7 +53,8 @@ const mapDispatchtoProps = (dispatch) => {
   return{
     handleTheme : () => dispatch(changeTheme()),
     handleSubmit: () => dispatch(onSubmit()),
-    handleReset:()=> dispatch(onReset())
+    handleReset:()=> dispatch(onReset()),
+    handleBacktoQuiz: () => dispatch(onBack())
   }
 }
 export default connect(mapStatetoProps,mapDispatchtoProps)(App);

@@ -1,4 +1,4 @@
-import { Reset, Submit, Theme } from "./Actions"
+import { Back, Reset, Response, Submit, Theme } from "./Actions"
 
 const initialState = {
     answers:[],
@@ -23,14 +23,28 @@ export const Reducer = (state={initialState},action) => {
         case Submit:{
            return{
             ...state,
-            submit:'true'
+            submit:true
            }
         }
         case Reset:{
             return{
              ...state,
-             reset:'true'
+             reset:true
             }
+         }
+         case Back:{
+            return{
+                ...state,
+                backtoQuiz:true,
+                submit:false,
+                reset:false
+            }
+         }
+         case Response:{
+            // return[...state,
+            //     {...payload}]
+            const newArray=[{...payload}]
+            return newArray
          }
         default :{
             return state

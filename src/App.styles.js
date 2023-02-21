@@ -49,4 +49,21 @@ export const Value = styled.span`
 `
 export const Button = styled.button`
     width: 90px;
+    border: 1px solid;
+    border-color: blue;
+    color: blue;
+`
+export const ResetBtn = styled.button`
+    width: 90px;
+    border: 1px solid;
+    border-color:red;
+    color: red;
+`
+export const QuizBtn = styled.button`
+    width: 90px;
+    border: 1px solid;
+    border-color:grey;
+    color: grey;
+    display:inline;
+    margin: 0 auto;
 `
