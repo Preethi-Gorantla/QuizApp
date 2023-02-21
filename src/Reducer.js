@@ -43,8 +43,8 @@ export const Reducer = (state={initialState},action) => {
          case Response:{
             // return[...state,
             //     {...payload}]
-            const newArray=[{...payload}]
-            return newArray
+            const newArray={...payload}
+            return [...state,newArray]
          }
         default :{
             return state

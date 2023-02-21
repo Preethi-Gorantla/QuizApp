@@ -47,7 +47,7 @@ const Options = (props) => {
             <OptionContainer>
                 {!submit && props.option.map((item,index) => 
                     <OptionField>
-                        <Radio type={'radio'} value={item} name="option" onClick={() => handleValue(index,item)}/>
+                        <Radio type={'radio'} value={item} name={item} onClick={() => handleValue(index,item)}/>
                         <Value>{item}</Value>
                     </OptionField>
                 )}
